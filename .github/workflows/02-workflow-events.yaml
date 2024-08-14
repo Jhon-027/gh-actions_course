@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show the trigger
-        run: echo "The workflow was triggered by a jhon-027@LAPTOP-T0EHUSSQ:~/gh-actions_course/.github/workflows event"
+        run: echo "The workflow was triggered by a(n) ${{github.event_name}} event"
