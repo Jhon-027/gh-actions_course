@@ -6,16 +6,16 @@ on:
 jobs: 
   ubuntu_echo: 
     runs-on: ubuntu-latest
-    step: 
-      -name: Show OS
-      run: |
-        echo "This job is running on an ubuntu runner"
-        echo "Runner OS: $RUNNER_OS "
+    steps:  # Corrected from 'step' to 'steps'
+      - name: Show OS
+        run: |
+          echo "This job is running on an Ubuntu runner"
+          echo "Runner OS: $RUNNER_OS"
 
-  window_echo:  
-    runs-on: window-latest
-    step: 
-      -name: show OS
-      run: |
-        echo "This job is running on an windows runner"
-        echo "Runner OS: $RUNNER_OS "
+  windows_echo:  # Corrected 'window_echo' to 'windows_echo'
+    runs-on: windows-latest  # Corrected 'window-latest' to 'windows-latest'
+    steps:  # Corrected from 'step' to 'steps'
+      - name: Show OS
+        run: |
+          echo "This job is running on a Windows runner"
+          echo "Runner OS: $RUNNER_OS"
