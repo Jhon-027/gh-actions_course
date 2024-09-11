@@ -19,5 +19,3 @@ jobs:
       run: |
         echo "This job is running on an windows runner"
         echo "Runner OS: $RUNNER_OS "
-
-        
