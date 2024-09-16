@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: echo message
-      run: echo " Running whenever a PR is closed"      
+        run: echo " Running whenever a PR is closed"      
