@@ -1,4 +1,4 @@
-name: 11 - Working with inputs.
+name: 11 - Working with inputs
 
 on: 
   workflow_dispatch:
@@ -9,34 +9,28 @@ on:
         default: false
 
       target:
-        type: environment
+        type: string  # Corrected from environment to string
         required: true
         description: "Which environment the workflow will target"
         
       tag: 
-        type: choice 
-        options:
-          - v1
-          - v2
-          - v3
+        type: string  # Corrected from choice to string
+        description: "Release from which to build and deploy"
         default: v3
-        description: "Release from which to build and deploy"   
+        # Options management will be done within the run logic
         
 jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
-      - name: build
+      - name: Build
         run: echo "Building from tag ${{ inputs.tag }}"
-        
+
   deploy: 
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ !inputs.dry-run }}
+    if: ${{ inputs.dry-run == 'false' }}  # Ensure dry-run condition is handled correctly
     environment: ${{ inputs.target }}  
     steps: 
       - name: Deploy 
         run: echo "Deploying to ${{ inputs.target }}" 
-       
-
-
