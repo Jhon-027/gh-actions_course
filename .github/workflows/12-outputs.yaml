@@ -6,7 +6,10 @@ on:
       build-status:
         description: 'Choose build status'
         required: true
-        type: string  # Changed from choice to string
+        type: choice
+        options:
+          - success
+          - failure
         default: success
         
 jobs: 
@@ -22,7 +25,7 @@ jobs:
       - name: build 
         id: build
         run: |
-          echo "status=${{ github.event.inputs['build-status'] }}" >> $GITHUB_OUTPUT
+          echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
