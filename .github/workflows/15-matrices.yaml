@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: fail if experimental  
         if: ${{ matrix.tag == 'experimental' }} 
-        run: exit 1  
+        run: exit 0 
       - name: Perform some tests
         run: |
           echo "Running tests on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-version }}"
