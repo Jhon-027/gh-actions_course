@@ -5,8 +5,7 @@ on: workflow_dispatch
 jobs: 
   backwards-compatibility: 
     runs-on: ${{ matrix.os }}
-    strategy: 
-      fail-fast: true
+    strategy:
       matrix: 
         node-version: [18.x, 20.x, 21.x]
         os: [ubuntu-latest, windows-latest]  
@@ -23,13 +22,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: fail if experimental  
-        if: ${{ matrix.tag == 'experimental' }} 
-        run: exit 0 
+      
       - name: Perform some tests
         run: |
           echo "Running tests on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-version }}"
-          sleep 10
+         
       - name: upload test results
         run: echo "uploading test results"
 
