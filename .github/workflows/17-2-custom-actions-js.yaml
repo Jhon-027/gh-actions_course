@@ -1,7 +1,27 @@
 name: 17 - 2 - Custom Actions - JS
 
+run-name: '17 - 2 - Custom Actions - JS | base-branch: ${{ inputs.base-branch }}'
+
 on:
   workflow_dispatch:
+    inputs:
+      base-branch:
+        description: "The branch used as the base for the dependency update checks"
+        default: main
+        required: false
+    
+      target-branch:
+        description: "The branch from which the PR is created"
+        default: update-dependencies
+        required: false
+    
+      working-directory:
+        description: "The working directory of the project to check for dependency updates"
+        required: true
+    
+      debug: 
+        description: "Whether the output debug messages to the console"
+        required: false
 
 jobs:
   dependency-update:
@@ -12,3 +32,9 @@ jobs:
 
       - name: Check for dependency updates
         uses: ./.github/actions/js-dependency-update
+        with: 
+          base-branch: ${{ inputs.base-branch }}
+          target-branch: ${{ inputs.target-branch }}
+          working-directory: ${{ inputs.working-directory }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          debug: ${{ inputs.debug }}
